@@ -70,6 +70,13 @@ clawbox up \
   --add-signal-cli-provisioning
 ```
 
+Once `clawbox up` completes, a Tart VM with the prepared VM will open.
+
+Alternatively, if you'd like to SSH into your Clawbox, you can run:
+```bash
+ssh clawbox-1@$(clawbox ip 1)
+```
+
 See the full list in [Optional Dependency Provisioning](#optional-dependency-provisioning).
 
 ## Developer Mode (Advanced)
