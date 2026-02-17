@@ -77,6 +77,8 @@ Alternatively, if you'd like to SSH into your Clawbox, you can run:
 ssh clawbox-1@$(clawbox ip 1)
 ```
 
+The default password is `clawbox`.
+
 See the full list in [Optional Dependency Provisioning](#optional-dependency-provisioning).
 
 ## Developer Mode (Advanced)
