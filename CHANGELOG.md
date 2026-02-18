@@ -2,6 +2,15 @@
 
 All notable changes to this project are documented in this file.
 
+## v1.2.1
+
+### Changes
+
+- fix: add provisioning network preflight checks and test fault injection
+- docs: add SSH example for standard mode
+- docs: add default password
+
+
 ## v1.2.0
 
 ### Changes
